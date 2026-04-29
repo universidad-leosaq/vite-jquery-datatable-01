@@ -2,8 +2,10 @@ import './style.css';
 import DataTable from 'datatables.net-dt';
 import 'datatables.net-dt/css/dataTables.dataTables.css';
 
-const API_URL = "https://raw.githubusercontent.com/PlataformasWeb-P-AA2026/api-demo/main/db.json"
-
+// const API_URL = "http://localhost:5985/demo2/_all_docs?include_docs=true"
+// 
+//
+const API_URL = "http://localhost:5985/demo2/_design/uno/_view/vista1?include_docs=true"
 async function cargarDatos() {
   try {
     const respuesta = await fetch(API_URL);
@@ -12,15 +14,17 @@ async function cargarDatos() {
       throw new Error('Error al consumir la API');
     }
 
-    const datos = await respuesta.json();
+    const mijson = await respuesta.json();
+    const datos = mijson.rows.map(function(row) {
+      return row.doc;
+    });
 
     new DataTable('#tabla-posts', {
       data: datos,
       columns: [
-        { data: 'AMIE' },
-        { data: 'Nombre-Educativa' },
-        { data: 'Canton' },
-        { data: 'Parroquia' }
+        { data: 'nombre' },
+        { data: 'apellido' },
+        { data: 'lenguaje' }
       ],
       pageLength: 10,
       language: {
