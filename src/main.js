@@ -5,7 +5,7 @@ import 'datatables.net-dt/css/dataTables.dataTables.css';
 // const API_URL = "http://localhost:5985/demo2/_all_docs?include_docs=true"
 // 
 //
-const API_URL = "http://localhost:5985/demo2/_design/uno/_view/vista1?include_docs=true"
+const API_URL = "http://localhost:5985/demo3/_design/uno/_view/vista1?include_docs=true"
 async function cargarDatos() {
   try {
     const respuesta = await fetch(API_URL);
